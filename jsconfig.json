@@ -1,0 +1,6 @@
+{
+  "compilerOptions": {
+    "checkJs": true
+  },
+  "include": ["*.js", "p5.play.d.ts", "js/*.js", "vendor/*.js"]
+}
