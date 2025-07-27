@@ -48,6 +48,8 @@ declare class Sprite {
   newPosition: p5.Vector;
   deltaX: number;
   deltaY: number;
+  x: number;
+  y: number;
   
   // Movement properties
   velocity: p5.Vector;
@@ -74,14 +76,20 @@ declare class Sprite {
   depth: number;
   visible: boolean;
   rotation: number;
+  rotationSpeed: number;
+  rotateToDirection: boolean;
   scale: number;
   mirrorX: boolean;
   mirrorY: boolean;
+  shapeColor: any;
   
   // Animation properties
   animation: Animation;
   frame: number;
   frameDelay: number;
+  
+  // Debug properties
+  debug: boolean;
   
   // Methods
   update(): void;
@@ -91,6 +99,9 @@ declare class Sprite {
   addAnimation(label: string, animation: Animation): void;
   addAnimation(label: string, ...frameImages: (p5.Image | string)[]): void;
   changeAnimation(label: string): void;
+  setAnimation(label: string): void;
+  setAnimation(animation: Animation): void;
+  setFrame(frame: number): void;
   
   // Movement methods
   setVelocity(x: number, y: number): void;
@@ -98,17 +109,26 @@ declare class Sprite {
   setDirection(direction: number): void;
   setPosition(x: number, y: number): void;
   moveTo(x: number, y: number): void;
+  pointTo(x: number, y: number): void;
+  getDirection(): number;
+  getSpeed(): number;
   
   // Collision methods
   setCollider(type: string, ...args: any[]): void;
   collide(target: Sprite | Group, callback?: Function): boolean;
   overlap(target: Sprite | Group, callback?: Function): boolean;
   bounce(target: Sprite | Group): void;
+  bounceOff(target: Sprite | Group): void;
+  displace(target: Sprite | Group): void;
+  isTouching(target: Sprite | Group): boolean;
   
   // Visual methods
   setImage(image: p5.Image | string): void;
-  setAnimation(animation: Animation): void;
   changeAnimation(animation: Animation): void;
+  
+  // Control methods
+  pause(): void;
+  play(): void;
   
   // Tagging methods
   addTag(tag: string): void;
@@ -204,6 +224,7 @@ declare function getSprites(...tags: string[]): Sprite[];
 declare function removeSprite(sprite: Sprite): void;
 declare function cameraPush(): void;
 declare function cameraPop(): void;
+declare function CreateEdgeSprites(): void;
 
 // Key input global functions
 declare function keyWentDown(key: number | P5PlayKey): boolean;
