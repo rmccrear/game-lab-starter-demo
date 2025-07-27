@@ -218,6 +218,7 @@ declare class SpriteSheet {
 
 // Global functions (for convenience)
 declare function createSprite(x: number, y: number, width: number, height: number): Sprite;
+declare function createGroup(): Group;
 declare function drawSprites(group?: Group): void;
 declare function updateSprites(updating?: boolean): void;
 declare function getSprites(...tags: string[]): Sprite[];
