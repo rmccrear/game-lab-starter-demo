@@ -223,10 +223,20 @@ declare class Sprite {
   /** Change in Y position this frame */
   deltaY: number;
   
-  /** X coordinate of sprite center (shortcut for position.x) */
+  /** 
+   * X coordinate of sprite center (shortcut for position.x)
+   * @example
+   * fly.x = 400; // Move fly to right edge
+   * if (frog.x > 400) { frog.x = 0; } // Wrap around screen
+   */
   x: number;
   
-  /** Y coordinate of sprite center (shortcut for position.y) */
+  /** 
+   * Y coordinate of sprite center (shortcut for position.y)
+   * @example
+   * frog.y = 320; // Set frog to ground level
+   * if (frog.y <= 100) { frog.velocityY = 4; } // Start falling
+   */
   y: number;
   
   /**
@@ -354,8 +364,15 @@ declare class Sprite {
    * @param label - Name to reference this animation
    * @param animation - Animation object to add
    * @example
+   * // Load animations first
+   * let flyAnimation = loadSpriteSheet("sprites/fly.png", 64, 45, 2);
+   * let frogAnimation = loadAnimation("sprites/frog.png");
+   * 
+   * // Add animations to sprites
    * let walkAnim = loadAnimation("walk1.png", "walk2.png", "walk3.png");
    * player.addAnimation("walk", walkAnim);
+   * fly.addAnimation('fly', flyAnimation);
+   * frog.addAnimation('frog', frogAnimation);
    */
   addAnimation(label: string, animation: Animation): void;
   
@@ -400,10 +417,17 @@ declare class Sprite {
   
   /**
    * Sets the sprite's velocity
-   * @param x - Horizontal velocity
-   * @param y - Vertical velocity
+   * @param x - Horizontal velocity (positive = right, negative = left)
+   * @param y - Vertical velocity (positive = down, negative = up)
    * @example
+   * // Set horizontal movement
    * player.setVelocity(5, -10); // Move right and up
+   * food.velocityX = -1; // Move left only
+   * enemy.velocityX = -5; // Move left faster
+   * 
+   * // Set vertical movement
+   * player.velocityY = -4; // Jump up
+   * player.velocityY = 4; // Fall down
    */
   setVelocity(x: number, y: number): void;
   
@@ -509,6 +533,17 @@ declare class Sprite {
    * Checks if sprite is touching another sprite or group
    * @param target - Sprite or group to check
    * @returns True if touching
+   * @example
+   * // Check collision between game objects
+   * if (frog.isTouching(fly)) {
+   *   score = score + 10; // Add points
+   *   fly.x = 400; // Reset fly position
+   * }
+   * 
+   * // Check collision with groups
+   * if (player.isTouching(enemies)) {
+   *   player.health -= 10;
+   * }
    */
   isTouching(target: Sprite | Group): boolean;
   
@@ -920,13 +955,20 @@ declare class SpriteSheet {
 /**
  * Creates a new sprite at the specified position and size
  * @param x - X coordinate of the sprite's center
- * @param y - Y coordinate of the sprite's center
+ * @param y - Y coordinate of the sprite's center  
  * @param width - Width of the sprite (optional, defaults to 50)
  * @param height - Height of the sprite (optional, defaults to 50)
  * @returns A new Sprite object
  * @example
+ * // Create sprites with different sizes
  * let player = createSprite(200, 200, 50, 50);
  * let enemy = createSprite(300, 300); // Uses default size
+ * let smallItem = createSprite(100, 100, 30, 30);
+ * 
+ * // Create sprites for game objects
+ * let fly = createSprite(400, 150, 30, 30);
+ * let frog = createSprite(200, 320, 40, 40);
+ * let mushroom = createSprite(400, 320, 35, 35);
  */
 declare function createSprite(x: number, y: number, width?: number, height?: number): Sprite;
 
@@ -943,8 +985,22 @@ declare function createGroup(): Group;
  * Draws all sprites to the canvas
  * @param group - Optional group to draw (if not specified, draws all sprites)
  * @example
- * drawSprites(); // Draw all sprites
+ * // Draw all sprites (most common usage)
+ * drawSprites();
+ * 
+ * // Draw specific groups
  * drawSprites(enemies); // Draw only enemies
+ * drawSprites(collectibles); // Draw only collectibles
+ * 
+ * // Typical usage in draw() function
+ * function draw() {
+ *   drawBackground();
+ *   showBoards();
+ *   respondToUser();
+ *   doSpriteMovement();
+ *   doSpriteInteraction();
+ *   drawSprites(); // Draw all sprites last
+ * }
  */
 declare function drawSprites(group?: Group): void;
 
@@ -1015,8 +1071,20 @@ declare function createEdgeSprites(): void;
  * @param key - Key code or string alias (e.g., 'SPACE', 'A', 32)
  * @returns True if key was pressed this frame
  * @example
+ * // Handle jumping controls
  * if (keyWentDown('SPACE')) {
  *   player.jump();
+ * }
+ * if (keyWentDown('UP')) {
+ *   frog.velocityY = -4; // Jump up
+ * }
+ * 
+ * // Handle movement controls
+ * if (keyWentDown('LEFT')) {
+ *   player.velocityX = -2;
+ * }
+ * if (keyWentDown('RIGHT')) {
+ *   player.velocityX = 2;
  * }
  */
 declare function keyWentDown(key: number | P5PlayKey): boolean;
@@ -1049,13 +1117,46 @@ declare function keyDown(key: number | P5PlayKey): boolean;
 
 /**
  * Creates an animation from a sequence of images
- * @param frameImages - Image files or p5.Image objects for each frame
- * @returns A new Animation object
+ * To be typically used in the preload() function of the sketch.
+ * Can load individual image files or create sequence animations from numbered files.
+ * 
+ * @param frameImages - Image files or p5.Image objects for each frame. Can be individual files or sequence patterns.
+ * @returns A new Animation object with the loaded frames
  * @example
+ * // Load individual image files
  * let walkAnim = loadAnimation("walk1.png", "walk2.png", "walk3.png");
  * player.addAnimation("walk", walkAnim);
+ * 
+ * // Load sequence animation (numbered files)
+ * let sequenceAnim = loadAnimation("data/walking0001.png", "data/walking0005.png");
+ * 
+ * // Load mixed animation
+ * let glitchAnim = loadAnimation("data/dog.png", "data/horse.png", "data/cat.png", "data/snake.png");
  */
 declare function loadAnimation(...frameImages: (p5.Image | string)[]): Animation;
+
+/**
+ * Loads a Sprite Sheet.
+ * To be typically used in the preload() function of the sketch.
+ * There are two different ways to load a SpriteSheet:
+ * 1. Using width, height for each frame and number of frames
+ * 2. Using an array of objects that define each frame
+ *
+ * @param image - Path to the sprite sheet image or p5.Image object
+ * @param frameWidth - Width of each frame in pixels, or array of frame definitions
+ * @param frameHeight - Height of each frame in pixels (required if frameWidth is a number)
+ * @param numFrames - Number of frames in the sprite sheet (required if frameWidth is a number)
+ * @param callback - Callback function to execute when image loads
+ * @returns A SpriteSheet object containing the loaded frames
+ * @example
+ * // Method 1 - Using width, height for each frame and number of frames
+ * var explodeAnimation = loadSpriteSheet('assets/explode_sprite_sheet.png', 171, 158, 11);
+ * 
+ * // Method 2 - Using an array of objects that define each frame
+ * var playerFrames = loadJSON('assets/tiles.json');
+ * var playerAnimation = loadSpriteSheet('assets/player_spritesheet.png', playerFrames);
+ */
+declare function loadSpriteSheet(image: string | p5.Image, frameWidth: number | any[], frameHeight?: number, numFrames?: number, callback?: Function): SpriteSheet;
 
 /**
  * Sound functions - Play audio using HTML5 Audio API
@@ -1077,4 +1178,21 @@ declare function playSound(filename: string, loop?: boolean): void;
  * @example
  * stopSound("background_music.mp3");
  */
-declare function stopSound(filename: string): void; 
+declare function stopSound(filename: string): void;
+
+/**
+ * p5.js Constants - Used for alignment and positioning
+ */
+
+/**
+ * Text alignment constants
+ */
+declare const LEFT: string;
+declare const CENTER: string;
+declare const RIGHT: string;
+declare const TOP: string;
+declare const BOTTOM: string;
+
+/**
+ * Animation global functions - Create and manage animations
+ */ 
