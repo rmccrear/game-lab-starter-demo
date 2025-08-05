@@ -12,7 +12,8 @@ See Lesson 27 or Lesson 28 for ideas on how to plan and implement your game as a
 
 * Lesson 27 (Following a Plan -- Platform Jumper)
   * [Activity Guide](https://docs.google.com/document/d/1FqTjwpAuFrVidZ_j6aGw895FivFCRO2CZSvhHqWuEik/view?tab=t.0)
-  * [code.org levels](https://studio.code.org/courses/csd-2024/units/3/lessons/27/levels/1)
+  * [Instructions in steps](https://github.com/rmccrear/codex-lv2-may-2025/blob/main/guides/week3-group-project/lesson-27/lesson-27.md)
+  * [Instructions as code.org levels](https://studio.code.org/courses/csd-2024/units/3/lessons/27/levels/1)
 * Lesson 28 (Creating and following a plan -- create your own game)
   * [Lesson Overview](https://studio.code.org/courses/csd-2024/units/3/lessons/28/student)
   * [Activity Guide](https://docs.google.com/document/d/14oPvmdvm_BfOn5KBSov6jyhoEMRHygdNNIXl-fe4g-Q/view?tab=t.0)
