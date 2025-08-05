@@ -4,6 +4,21 @@
 
 This is starter code that sets up a VSCode environment to mimic the coding experience in Code.org's Game Lab.
 
+Each file in the `/js` directory contains a function with few lines of example code. You should delete this example code and write your own. (Don't delete the function! Keep it so that your code can be called by the `script.js` file.)
+
+## Lesson References
+
+See Lesson 27 or Lesson 28 for ideas on how to plan and implement your game as a team.
+
+* Lesson 27 (Following a Plan -- Platform Jumper)
+  * [Activity Guide](https://docs.google.com/document/d/1FqTjwpAuFrVidZ_j6aGw895FivFCRO2CZSvhHqWuEik/view?tab=t.0)
+  * [code.org levels](https://studio.code.org/courses/csd-2024/units/3/lessons/27/levels/1)
+* Lesson 28 (Creating and following a plan -- create your own game)
+  * [Lesson Overview](https://studio.code.org/courses/csd-2024/units/3/lessons/28/student)
+  * [Activity Guide](https://docs.google.com/document/d/14oPvmdvm_BfOn5KBSov6jyhoEMRHygdNNIXl-fe4g-Q/view?tab=t.0)
+  * [code.org levels](https://studio.code.org/courses/csd-2024/units/3/lessons/28/levels/1)
+
+
 ## 🚀 Quick Start
 
 ### Prerequisites
@@ -22,6 +37,24 @@ npx live-server
 ```
 
 3. **Open your browser** and navigate to the local server (usually `http://localhost:8080`)
+
+## Documentation
+
+See these two files for documentation on functions and objects in code.org's fork of p5.js and p5.play.js.
+
+* For drawing and the draw loop: [p5.js](https://github.com/rmccrear/codex-lv2-may-2025/blob/main/resources/skill-guides/game-lab-docs/P5_DOCS.md)
+* For sprites sprite movements, and user interaction [p5.play.js](https://github.com/rmccrear/codex-lv2-may-2025/blob/main/resources/skill-guides/game-lab-docs/P5_PLAY_DOCS.md)
+
+You can also review Code.org's CSD Unit 3.
+
+* For Background Drawing, review [Lesson 3](https://studio.code.org/courses/csd-2024/units/3/lessons/3/student) and [Lesson 4](https://studio.code.org/courses/csd-2024/units/3/lessons/4/student) of code.org's CSD Unit 3.
+* For Sprites, review [Lesson 8](https://studio.code.org/courses/csd-2024/units/3/lessons/8/student) and [Lesson 9](https://studio.code.org/courses/csd-2024/units/3/lessons/9/student)
+* For Text, like a score board, review [Lesson 10](https://studio.code.org/courses/csd-2024/units/3/lessons/10/student)
+* For Sprite Movement, review [Lesson 13](https://studio.code.org/courses/csd-2024/units/3/lessons/13/student)
+* For User interaction, review [Lesson 16](https://studio.code.org/courses/csd-2024/units/3/lessons/16/student) and [Lesson 17](https://studio.code.org/courses/csd-2024/units/3/lessons/17/student). (And [Lesson 15](https://studio.code.org/courses/csd-2024/units/3/lessons/15/student) for Conditionals)
+* For Sprite Interaction, review [Lesson 20](https://studio.code.org/courses/csd-2024/units/3/lessons/20/student)
+* For Overall Plans for a Platform Jumper, see [Lesson 27](https://studio.code.org/courses/csd-2024/units/3/lessons/27/student)
+* For Plans for a general game, see [Lesson 28](https://studio.code.org/courses/csd-2024/units/3/lessons/28/student)
 
 ## 📁 Project Structure
 
