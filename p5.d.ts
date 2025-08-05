@@ -29,14 +29,15 @@ declare function createCanvas(w: number, h: number, renderer?: any): HTMLCanvasE
 
 /**
  * Sets the background color of the canvas
- * @param r - Red value (0-255)
+ * @param r - Red value (0-255) or color object
  * @param g - Green value (0-255)
  * @param b - Blue value (0-255)
  * @example
  * background(135, 206, 235); // Sky blue
  * background(34, 139, 34); // Forest green
+ * background(color(135, 0, 235)); // Using color object
  */
-declare function background(r: number, g: number, b: number): void;
+declare function background(r: number | any, g?: number, b?: number): void;
 
 /**
  * Sets the fill color for shapes
@@ -251,7 +252,7 @@ declare function dist(x1: number, y1: number, x2: number, y2: number): number;
 
 /**
  * Creates a color object
- * @param r - Red value (0-255)
+ * @param r - Red value (0-255) or grayscale value (0-255) if used alone
  * @param g - Green value (0-255)
  * @param b - Blue value (0-255)
  * @param a - Alpha value (0-255, optional)
@@ -259,8 +260,9 @@ declare function dist(x1: number, y1: number, x2: number, y2: number): number;
  * @example
  * let red = color(255, 0, 0);
  * let blue = color(0, 0, 255, 128); // Semi-transparent
+ * let gray = color(128); // Grayscale
  */
-declare function color(r: number, g: number, b: number, a?: number): any;
+declare function color(r: number, g?: number, b?: number, a?: number): any;
 
 /**
  * p5.js Transform Functions - Used for moving, rotating, and scaling
@@ -316,6 +318,57 @@ declare function rotate(angle: number): void;
  * scale(2, 1); // Stretch horizontally
  */
 declare function scale(x: number, y?: number): void;
+
+/**
+ * Draws an arc
+ * @param x - X coordinate of center
+ * @param y - Y coordinate of center
+ * @param w - Width of arc
+ * @param h - Height of arc
+ * @param start - Starting angle in radians
+ * @param stop - Ending angle in radians
+ * @param mode - Arc mode (PIE, OPEN, CHORD, optional)
+ * @example
+ * arc(100, 100, 80, 80, 0, PI, PIE); // Pie slice
+ * arc(200, 100, 80, 80, 0, PI, OPEN); // Open arc
+ * arc(300, 100, 80, 80, 0, PI, CHORD); // Chord
+ */
+declare function arc(x: number, y: number, w: number, h: number, start: number, stop: number, mode?: string): void;
+
+/**
+ * Sets the text font
+ * @param font - Font name or font object
+ * @example
+ * textFont("Arial");
+ * textFont("Times", 24);
+ */
+declare function textFont(font: string | any, size?: number): void;
+
+/**
+ * Begins a custom shape definition
+ * Use with vertex() to define custom shapes
+ * @example
+ * shape();
+ * vertex(0, 0);
+ * vertex(50, 0);
+ * vertex(25, 50);
+ * endShape();
+ */
+declare function shape(): void;
+
+/**
+ * Draws a regular polygon with the specified number of sides
+ * @param x - X coordinate of the polygon center
+ * @param y - Y coordinate of the polygon center
+ * @param sides - Number of sides (3 = triangle, 4 = square, etc.)
+ * @param size - Size of the polygon (radius from center to vertices)
+ * @param rotation - Rotation angle in degrees (optional)
+ * @example
+ * regularPolygon(200, 200, 3, 50); // Triangle
+ * regularPolygon(300, 300, 6, 40, 30); // Rotated hexagon
+ */
+declare function regularPolygon(x: number, y: number, sides: number, size: number, rotation?: number): void;
+
 
 /**
  * p5.js Constants - Used for alignment and positioning
