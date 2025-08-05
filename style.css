@@ -1,13 +1,18 @@
-body {
+html, body {
+    overflow: hidden;
+    height: 100vh;
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    background: #F2F2F2;
+}
+
+#defaultCanvas0 {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    background-color: #f0f0f0;
+    margin: 2em auto;
 }
 
 canvas {
-    border: 2px solid #333;
+    border: 1px solid #888;
 }
