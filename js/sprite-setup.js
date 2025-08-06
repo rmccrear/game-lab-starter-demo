@@ -9,11 +9,11 @@ function setupSprites() {
 
   star = createSprite(100, 100, 50, 50);
   star.shapeColor = "aqua";
-  // star.addAnimation('twinkle', starAnimation);
-  // star.velocityX = -1;
-  // star.velocityY = -2;
-  // star.height = 30;
-  // star.width = 30;
+  star.addAnimation('twinkle', starAnimation);
+  star.velocityX = -1;
+  star.velocityY = -2;
+  star.height = 30;
+  star.width = 30;
 
  //Eddie Added
  // platform1 = createSprite(randomNumber(100 , 300), -25, 50, 50);
