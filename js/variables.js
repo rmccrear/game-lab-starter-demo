@@ -1,4 +1,11 @@
 // Example Code follows.
-// Please delete and replace with your own code.
+
+// Animation variables
+var alienAnimation;
+var starAnimation;
+var platformAnimation;
+
+// sprite variables
 var player;
 var star;
+var platform1;
