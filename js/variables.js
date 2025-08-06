@@ -1,6 +1,6 @@
 // Example Code follows.
 
-// Animation variables
+// animation variables
 var alienAnimation;
 var starAnimation;
 var platformAnimation;
