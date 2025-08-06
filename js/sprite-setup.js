@@ -4,8 +4,6 @@ function setupSprites() {
   // Please delete and replace with your own code.
   player = createSprite(200, 200, 50, 50);
   player.addAnimation('fly', alienAnimation);
-  player.velocityX = 2;
-  player.velocityY = 1;
   player.height = 50;
   player.width = 50;
 
