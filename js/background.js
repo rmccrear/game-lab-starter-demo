@@ -1,6 +1,11 @@
 
 function drawBackground() {
-    background1();
+    if(score<25) {
+        background1();
+    }
+    if(score>=25) {
+        background2();
+    }
 }
 
 function background1() {
@@ -15,5 +20,9 @@ function background1() {
   }
 
   function background2() {
-    
+    background("purple");
+    noStroke();
+    fill("yellow");
+    ellipse(randomNumber(0, 400), randomNumber(0, 400), 3, 3);
+    ellipse(randomNumber(0, 400), randomNumber(0, 400), 3, 3);
   }
