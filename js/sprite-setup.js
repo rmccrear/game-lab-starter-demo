@@ -15,11 +15,11 @@ function setupSprites() {
   star.width = 30;
 
  //Eddie Added
- // platform1 = createSprite(randomNumber(100 , 300), -25, 50, 50);
- // platform1.addAnimation("platform", platformAnimation);
- // platform1.velocityY = 1;
+  platform1 = createSprite(randomNumber(100 , 300), -25, 50, 50);
+  platform1.addAnimation("platform", platformAnimation);
+  platform1.velocityY = 1;
  //Eddie Added
- // platform2 = createSprite(randomNumber(100 , 300), -225, 50, 50);
- // platform2.addAnimation("platform", platformAnimation);
- // platform2.velocityY = 1;
+  platform2 = createSprite(randomNumber(100 , 300), -225, 50, 50);
+  platform2.addAnimation("platform", platformAnimation);
+  platform2.velocityY = 1;
 }

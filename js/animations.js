@@ -6,5 +6,5 @@ function setupAnimations(){
   starAnimation = loadAnimation("../sprites/star-1.png", "../sprites/star-2.png", "../sprites/star-3.png", "../sprites/star-4.png");
  
   // Eddie added
-  // platformAnimation = loadAnimation("../sprites/platform.png");
+   platformAnimation = loadAnimation("../sprites/platform.png");
 }
