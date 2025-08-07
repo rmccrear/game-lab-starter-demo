@@ -1,6 +1,6 @@
 
 function showBoards() {
-  
+  showScore();
 }
 
 function showScore() {
